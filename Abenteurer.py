@@ -17,14 +17,6 @@ st.title("Finde alle Fallen!")
 
 
 
-
-
-
-
-
-
-
-
 st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
     <style>
@@ -83,7 +75,7 @@ else:
 # Größer und/oder mehr! ;)
 if level == "Angsthase (6x6)":
     f = 6
-    schiffe = [5, 4, 3, 2, 2, 1]
+    schiffe = [5, 4, 3, 2, 1]
     MAX_ZUEGE = 15
 elif level == "Vorsichtig (7x7)":
     f = 7
