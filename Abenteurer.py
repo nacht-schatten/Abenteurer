@@ -51,7 +51,7 @@ Aber bedenke, du musst aber immer zwei Steine gleichzeitig werfen!
 </div>
 """, unsafe_allow_html=True)
     level = st.selectbox("🧭 Wie mutig bist du heute?", ["Angsthase (6x6)", "Vorsichtig (7x7)", "Furchtlos (8x8)", "Abenteurer (9x9)", "Draufgänger (10x10)"])
-    if st.button("🚀 Spiel starten"):
+    if st.button("🗝️ Schatzkammer betreten"):
         st.session_state.level = level
         st.session_state.level_fixiert = True
         st.rerun()
@@ -63,7 +63,7 @@ if "level" in st.session_state:
     level = st.session_state.level
     
 else:
-    st.warning("⚠️ Bitte zuerst einen Modus auswählen und das Spiel starten.")
+    st.warning("⚠️ Wähle einen Modus und betrete die Schatzkammer bevor du werfen kanns!")
     st.stop()  # verhindert weitere Ausführung bis Level gewählt wurde
 
 
