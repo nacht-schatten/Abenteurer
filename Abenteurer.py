@@ -80,19 +80,19 @@ if level == "Angsthase (6x6)":
 elif level == "Vorsichtig (7x7)":
     f = 7
     schiffe = [5, 4, 4, 3, 2]
-    MAX_ZUEGE = 23 
+    MAX_ZUEGE = 26 
 elif level == "Furchtlos (8x8)":
     f = 8
     schiffe = [6, 5, 4, 3, 2, 2, 1]
-    MAX_ZUEGE = 28
+    MAX_ZUEGE = 33
 elif level == "Abenteurer (9x9)":
     f = 9
     schiffe = [7, 6, 5, 4, 3, 2, 1]
-    MAX_ZUEGE = 36
+    MAX_ZUEGE = 40
 else:
     f = 10
     schiffe = [7, 6, 5, 4, 3, 2, 2, 1, 1]
-    MAX_ZUEGE = 47
+    MAX_ZUEGE = 50
 
 
 
