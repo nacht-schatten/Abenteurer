@@ -44,7 +44,7 @@ if "level_fixiert" not in st.session_state or not st.session_state.level_fixiert
     <style>
     .handfont {
         font-family: 'Caveat', cursive;
-        font-size: 28px;
+        font-size: 20px;
         line-height: 1.4;
     }
     </style>
