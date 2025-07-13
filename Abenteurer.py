@@ -48,7 +48,7 @@ if "level_fixiert" not in st.session_state or not st.session_state.level_fixiert
         line-height: 1.4;
     }
     </style>
-    <div class="handschrift">
+    <div class="handfont">
 Sei gegrüßt, Abenteurer!
 
 Du bist sicherlich wegen meiner Reichtümer hier. - Nun, sie gehören dir! ...wenn du an meinen Fallen vorbeikommst.
