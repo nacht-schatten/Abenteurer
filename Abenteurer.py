@@ -178,7 +178,7 @@ def zeige_spielfeld(versuche, wasser_marker, treffer_marker):
             pos = (zeile, spalte)
             if pos in treffer_marker:
                 farbe = "#FFD700"
-                symbol = "⛔"
+                symbol = "‼️"
             elif pos in wasser_marker:
                 farbe = "#DCDCDC"
                 symbol = "🧱"
@@ -186,7 +186,7 @@ def zeige_spielfeld(versuche, wasser_marker, treffer_marker):
                 farbe = "#FF7F7F"
                 symbol = "💥"
             else:
-                farbe = "#9E6E2B"
+                farbe = "#C9B09A"
                 symbol = "🟫"
             grid_html += f"<td style='width:24px;height:24px;text-align:center;background-color:{farbe};border:1px solid #ccc'>{symbol}</td>"
         grid_html += "</tr>"
