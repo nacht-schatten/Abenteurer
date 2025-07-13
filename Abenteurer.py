@@ -58,7 +58,7 @@ Hier, nimm ein paar Kieselsteine zum Werfen, sie werden dir helfen, die Fallen z
 Aber bedenke, du musst aber immer zwei Steine gleichzeitig werfen!
 </div>
 """, unsafe_allow_html=True)
-    level = st.selectbox("🧭 Schwierigkeitsgrad wählen", ["Matrose", "Bootsmann", "Leutnant", "Kapitän", "Admiral"])
+    level = st.selectbox("🧭 Wie mutig bist du heute?", ["Angsthase (6x6)", "Vorsichtig (7x7)", "Furchtlos (8x8)", "Abenteurer (9x9)", "Draufgänger (10x10)"])
     if st.button("🚀 Spiel starten"):
         st.session_state.level = level
         st.session_state.level_fixiert = True
@@ -81,19 +81,19 @@ else:
 
 
 # Größer und/oder mehr! ;)
-if level == "Matrose":
+if level == "Angsthase (6x6)":
     f = 6
     schiffe = [5, 4, 3, 2, 2, 1]
     MAX_ZUEGE = 15
-elif level == "Bootsmann":
+elif level == "Vorsichtig (7x7)":
     f = 7
     schiffe = [5, 4, 4, 3, 3, 2]
     MAX_ZUEGE = 17  
-elif level == "Leutnant":
+elif level == "Furchtlos (8x8)":
     f = 8
     schiffe = [6, 5, 4, 3, 2, 2, 1]
     MAX_ZUEGE = 23
-elif level == "Kapitän":
+elif level == "Abenteurer (9x9)":
     f = 9
     schiffe = [7, 6, 5, 4, 3, 3, 2, 2, 1]
     MAX_ZUEGE = 29
