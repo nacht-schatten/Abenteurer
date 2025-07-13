@@ -47,7 +47,7 @@ Du bist sicherlich wegen meiner Reichtümer hier. - Nun, sie gehören dir! ...we
 Je größer das Rikiso, desto größer der Schatz!
 
 Hier, nimm ein paar Kieselsteine zum Werfen, sie werden dir helfen, die Fallen zu finden, bevor du selbst hineingerätst.
-Aber bedenke, du musst aber immer zwei Steine gleichzeitig werfen! Lausche und höre, wieviele Fallen zuschnappen!
+Aber bedenke, du musst immer zwei Steine gleichzeitig werfen! Lausche und höre, wieviele Fallen zuschnappen!
 </div>
 """, unsafe_allow_html=True)
     level = st.selectbox("🧭 Wie mutig bist du heute?", ["Angsthase (6x6)", "Vorsichtig (7x7)", "Furchtlos (8x8)", "Abenteurer (9x9)", "Draufgänger (10x10)"])
