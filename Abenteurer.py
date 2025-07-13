@@ -87,11 +87,11 @@ elif level == "Furchtlos (8x8)":
     MAX_ZUEGE = 23
 elif level == "Abenteurer (9x9)":
     f = 9
-    schiffe = [7, 6, 5, 4, 3, 3, 2, 2, 1]
+    schiffe = [7, 6, 5, 4, 3, 2, 1]
     MAX_ZUEGE = 29
 else:
     f = 10
-    schiffe = [7, 6, 5, 4, 4, 3, 3, 3, 2, 2, 1, 1]
+    schiffe = [7, 6, 5, 4, 3, 2, 2, 1, 1]
     MAX_ZUEGE = 40
 
 
