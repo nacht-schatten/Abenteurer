@@ -47,7 +47,7 @@ Du bist sicherlich wegen meiner Reichtümer hier. - Nun, sie gehören dir! ...we
 Je größer das Rikiso, desto größer der Schatz!
 
 Hier, nimm ein paar Kieselsteine zum Werfen, sie werden dir helfen, die Fallen zu finden, bevor du selbst hineingerätst.
-Aber bedenke, du musst aber immer zwei Steine gleichzeitig werfen!
+Aber bedenke, du musst aber immer zwei Steine gleichzeitig werfen! Lausche und höre, wieviele Fallen zuschnappen!
 </div>
 """, unsafe_allow_html=True)
     level = st.selectbox("🧭 Wie mutig bist du heute?", ["Angsthase (6x6)", "Vorsichtig (7x7)", "Furchtlos (8x8)", "Abenteurer (9x9)", "Draufgänger (10x10)"])
@@ -232,36 +232,38 @@ def parse_koordinaten(eingabe, zeilen_map, erlaubte_anzahl=None, label="Eingabe"
 
 
 with st.sidebar:
-    st.title("🛳️ Spielregeln")
+    st.title("📌 Spielregeln")
 
     st.markdown(f"""
     **Ziel des Spiels:**  
-    Finde alle Schiffe, die sich im Raster verbergen.
+    Finde alle Fallen und gelange zum Schatz!
 
     **So funktioniert's:**  
-    - Du hast **{MAX_ZUEGE} Züge**, um alle Schiffe zu finden.  
-    - Nenne immer **zwei Felder**.
+    - Du hast **{MAX_ZUEGE} Züge**, um alle Fallen zu finden.  
+    - Bewerfe immer **zwei Felder**.
     - Du erfährst die **Anzahl der Treffer**, aber **nicht, wo** diese erfolgt sind.  
-    - Die Züge und deren Ergebnis werden im **Protokoll** vermerkt:
+    - Die Züge und deren Ergebnis werden im **Notizbuch** vermerkt:
         - 🟢: 2 Treffer
         - 🟡: 1 Treffer
         - 🔴: 0 Treffer
     - Beworfene Felder werden mit 💥 gekennzeichent.
-    - Du kannst **eigene Markierungen** setzten, wo du 
-        - Nichts 🧱 oder
-        - Fallen 🪤 vermutest.
-    - Sind alle Züge verbraucht, kannst du deine Vermutung äußern, wo sich die Schiffe befinden und anschließend überprüfen.
+    - Du kannst **eigene Markierungen** auf die Felder setzten, die du für
+        - Sicher 🧱 oder
+        - Fallen ‼️ hältst.
+    - Hast du alle Steine geworfen, kannst du dich zum Schatz vorwagen!
     """)
 
     st.markdown("---")
-    st.subheader("🚢 Schiffe im Spiel")
+    st.subheader("☠️ Das sind die Fallen:")
 
     spielschiffe = {
-    "🚢 Schlachtschiff": 5,
-    "🛥️ Kreuzer": 4,
-    "⛵ Zerstörer": 3,
-    "🛶 Tanker": 2,
-    "🚣 U-Boot": 1
+    "Pechregen": 7,     
+    "Rotierende Schwerter ": 6,    
+    "Fallendes Gitter": 5,
+    "Netzfalle": 4,
+    "Steinschlag": 3,
+    "Giftpfeile": 2,
+    "Falltür": 1
     }
 
 # Beispielhafte Schiffsliste
@@ -280,10 +282,9 @@ with st.sidebar:
         st.markdown(f"- **{anzahl}×** {name}: ({laenge} Feld{'er' if laenge > 1 else ''})")
         
     st.markdown("""
-    **Anordnung der Schiffe:**
-    - Die Felder eines Schiffs liegen immer **in einer Linie**.
-    - Ein Schiff liegt entweder **horizontal** oder **vertikal** im Feld.
-    - Die Schiffe **berühren** sich **nicht**, auch **nicht diagonal**.
+    **Anordnung der Fallen:**
+    - Die Felder einer Falle berühren einander an mindestens einer **Seitenfläche**, **nicht an den Ecken**.
+    - Die Fallen **berühren** sich **nicht**, auch **nicht diagonal**.
     """)
 
     st.markdown("---")
@@ -328,8 +329,8 @@ buchstaben = "ABCDEFGHIJ"
 zeilen_map = {buch: idx for idx, buch in enumerate(buchstaben)}
 
 if st.session_state.phase == "spiel":
-    st.subheader("🎯 Feuer frei – gib deine Koordinaten ein:")
-    eingabe = st.text_input(f"Du hast {MAX_ZUEGE} Züge. Gibt hier immer zwei Koordinaten so ein: A1;C3", value="A1;C3")
+    st.subheader("🎯 Los geht's! – Wohin willst du zielen?")
+    eingabe = st.text_input(f"Du kannst {MAX_ZUEGE} mal werfen. Gibt hier immer zwei Koordinaten so ein: A1;C3", value="A1;C3")
     koordinaten, fehler = parse_koordinaten(eingabe, zeilen_map, erlaubte_anzahl=2, label="Abschuss")
     if fehler:
         st.error(fehler)
@@ -337,10 +338,10 @@ if st.session_state.phase == "spiel":
 
     
 
-    if st.button("💣 Abschuss starten!") and len(koordinaten) == 2:
+    if st.button("🏹 Abwerfen!") and len(koordinaten) == 2:
         spielfeld = st.session_state.spielfeld
         treffer = sum(1 for r, c in koordinaten if spielfeld[r, c] == 1)
-        st.success(f"🚀 {treffer} Treffer!")
+        st.toast(f"💡 {treffer} Treffer!")
         st.session_state.versuche.extend(koordinaten)
         st.session_state.zug_nr += 1
         st.session_state.schussprotokoll.append((koordinaten, treffer))
@@ -351,7 +352,7 @@ if st.session_state.phase == "spiel":
         if st.session_state.zug_nr > MAX_ZUEGE:
             st.session_state.phase = "raten"
 else:
-    st.warning("🔒 Die Züge sind aufgebraucht – du kannst jetzt nicht mehr feuern.")
+    st.warning("🔒 Keine Steine mehr übrig – du kannst jetzt nicht mehr werfen.")
 
     
     
@@ -376,8 +377,8 @@ def zeige_auswertung(korrekt, verpasst, daneben):
                    farbe = "#D3D3D3"  # grau
                    symbol = "❓"
                else:
-                   farbe = "#ADD8E6"
-                   symbol = "🟦"
+                    farbe = "#C9B09A"
+                    symbol = "🟫"
                html += f"<td style='width:24px;height:24px;text-align:center;background-color:{farbe};border:1px solid #aaa'>{symbol}</td>"
            html += "</tr>"
        html += "</table>"
@@ -392,7 +393,7 @@ def zeige_auswertung(korrekt, verpasst, daneben):
 
 
 
-wasser_input = st.text_input("💧 Vermutlich Wasser (z. B. A1;B3)")
+wasser_input = st.text_input("🧱 Vermutlich sicher (z. B. A1;B3)")
 ratio = 3 if f > 8 else 2
 col1, col2 = st.columns([ratio, 1])
 
@@ -402,7 +403,7 @@ with col1:
     
     # --- Zusatz-Eingaben für Marker ---
     
-    treffer_input = st.text_input("🚩 Vermutete Treffer (z. B. C5;D7)")
+    treffer_input = st.text_input("‼️ Vermutete Fallen (z. B. C5;D7)")
 
     wasser_marker, fehler_wasser = parse_koordinaten(wasser_input, zeilen_map, label="Wasser-Markierung")
     treffer_marker, fehler_treffer = parse_koordinaten(treffer_input, zeilen_map, label="Treffer-Markierung")
@@ -415,7 +416,7 @@ with col1:
     zeige_spielfeld(st.session_state.versuche, wasser_marker, treffer_marker)
 
 with col2:
-    st.subheader("Protokoll")
+    st.subheader("Notizbuch")
 
     if st.session_state.schussprotokoll:
         scroll_html = f"<div class='schreibmaschine' style='max-height:{150+f*35}px; overflow-y:auto; padding:0px;'>"
@@ -435,7 +436,7 @@ with col2:
         scroll_html += "</div>"
         st.markdown(scroll_html, unsafe_allow_html=True)
     else:
-        st.info("Noch keine Züge abgefeuert.")
+        st.info("Noch keine Steine geworfen.")
 
 
 
@@ -449,7 +450,7 @@ if st.session_state.zug_nr > MAX_ZUEGE:
     st.session_state.phase = "raten"
 
 if st.session_state.phase == "raten":
-    st.header("🖊️ Wo liegen die Schiffe?")
+    st.header("🔍 Wo sind die Fallen?")
     
     spielfeld = st.session_state.spielfeld
 
@@ -460,7 +461,7 @@ if st.session_state.phase == "raten":
             st.warning(fehler_raten)
 
 
-        if st.button("🚢 Raten abschließen") and not fehler_raten:
+        if st.button("🙏 Raten abschließen") and not fehler_raten:
             # → Auswertung + Ergebnis speichern/anzeigen
         
             schiffsfelder = [(r, c) for r in range(f) for c in range(f) if spielfeld[r, c] == 1]
@@ -482,11 +483,12 @@ if st.session_state.phase == "raten":
 
         anzahl_versenkt = len(versenkte)
         if anzahl_versenkt < 1:
-            st.error("❌ Keine Schiffe enttarnt!")
+            st.error("☠️ Keine einzige Falle entdeckt! Dein Skelett wird andere Abentuerer warnen!")
         elif anzahl_versenkt <   len(st.session_state.schiffe_info):
-            st.warning(f"🚤 **{anzahl_versenkt}** von {len(st.session_state.schiffe_info)} Schiffen versenkt")
+            st.warning(f"🚑 **{anzahl_versenkt}** von {len(st.session_state.schiffe_info)} Fallen entdeckt. Du kommst mit dem Schrecken davon - ohne Schatz.")
         else:
-            st.success("🎉 Alle Schiffe enttarnt!")
+            st.success("🪙 Alle Fallen gefunden! Meine Reichtümer sind dein!")
+            st.balloons()
     
         zeige_auswertung(korrekte, verpasst, daneben)
 
