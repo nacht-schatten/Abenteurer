@@ -178,16 +178,16 @@ def zeige_spielfeld(versuche, wasser_marker, treffer_marker):
             pos = (zeile, spalte)
             if pos in treffer_marker:
                 farbe = "#FFD700"
-                symbol = "🚩"
+                symbol = "⛔"
             elif pos in wasser_marker:
                 farbe = "#DCDCDC"
-                symbol = "💧"
+                symbol = "🧱"
             elif pos in versuche:
                 farbe = "#FF7F7F"
                 symbol = "💥"
             else:
-                farbe = "#ADD8E6"
-                symbol = "🟦"
+                farbe = "#9E6E2B"
+                symbol = "🟫"
             grid_html += f"<td style='width:24px;height:24px;text-align:center;background-color:{farbe};border:1px solid #ccc'>{symbol}</td>"
         grid_html += "</tr>"
     grid_html += "</table>"
@@ -246,10 +246,10 @@ with st.sidebar:
         - 🟢: 2 Treffer
         - 🟡: 1 Treffer
         - 🔴: 0 Treffer
-    - Beschossene Felder werden mit 💥 gekennzeichent.
+    - Beworfene Felder werden mit 💥 gekennzeichent.
     - Du kannst **eigene Markierungen** setzten, wo du 
-        - Wasser 💧 oder
-        - Treffer 🚩 vermutest.
+        - Nichts 🧱 oder
+        - Fallen 🪤 vermutest.
     - Sind alle Züge verbraucht, kannst du deine Vermutung äußern, wo sich die Schiffe befinden und anschließend überprüfen.
     """)
 
