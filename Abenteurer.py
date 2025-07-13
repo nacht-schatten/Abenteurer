@@ -23,16 +23,7 @@ st.title("Finde alle Fallen!")
 
 
 
-st.markdown("""
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
-    <style>
-    .handfont {
-        font-family: 'Caveat', cursive;
-        font-size: 28px;
-        line-height: 1.4;
-    }
-    </style>
-""", unsafe_allow_html=True)
+
 
 st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
@@ -48,6 +39,25 @@ st.markdown("""
 
 
 if "level_fixiert" not in st.session_state or not st.session_state.level_fixiert:
+    st.markdown("""
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    <style>
+    .handfont {
+        font-family: 'Caveat', cursive;
+        font-size: 28px;
+        line-height: 1.4;
+    }
+    </style>
+    <div class="handschrift">
+Sei gegrüßt, Abenteurer!
+
+Du bist sicherlich wegen meiner Reichtümer hier. - Nun, sie gehören dir! ...wenn du an meinen Fallen vorbeikommst.
+Je größer das Rikiso, desto größer der Schatz!
+
+Hier, nimm ein paar Kieselsteine zum Werfen, sie werden dir helfen, die Fallen zu finden, bevor du selbst hineingerätst.
+Aber bedenke, du musst aber immer zwei Steine gleichzeitig werfen!
+</div>
+""", unsafe_allow_html=True)
     level = st.selectbox("🧭 Schwierigkeitsgrad wählen", ["Matrose", "Bootsmann", "Leutnant", "Kapitän", "Admiral"])
     if st.button("🚀 Spiel starten"):
         st.session_state.level = level
