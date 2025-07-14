@@ -75,11 +75,11 @@ else:
 # Größer und/oder mehr! ;)
 if level == "Angsthase (6x6)":
     f = 6
-    schiffe = [5, 4, 3, 2, 1]
+    schiffe = [5, 4, 3, 1]
     MAX_ZUEGE = 17
 elif level == "Vorsichtig (7x7)":
     f = 7
-    schiffe = [5, 4, 4, 3, 2]
+    schiffe = [5, 4, 3, 2, 2]
     MAX_ZUEGE = 25
 elif level == "Furchtlos (8x8)":
     f = 8
